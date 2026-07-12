@@ -3,13 +3,13 @@ import { ActivityItem } from "../components/RecentActivity";
 import { OverdueItem } from "../components/OverdueAlert";
 
 export interface KPIData {
-  availableCount: number;
-  allocatedCount: number;
-  maintenanceTodayCount: number;
-  activeBookingsCount: number;
-  pendingTransfersCount: number;
-  upcomingReturnsCount: number;
-  overdueCount: number;
+  available: number;
+  allocated: number;
+  maintenance: number;
+  bookings: number;
+  transfers: number;
+  upcoming: number;
+  overdue: number;
 }
 
 export interface DashboardDataResponse {
