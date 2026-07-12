@@ -74,7 +74,7 @@ export default function AssetDirectoryPage() {
     location: location || undefined,
   });
 
-  const assets = assetsResponse?.data?.assets || [];
+  const assets = Array.isArray(assetsResponse?.data) ? assetsResponse.data : [];
 
   const handleClearFilters = () => {
     setSearch("");
