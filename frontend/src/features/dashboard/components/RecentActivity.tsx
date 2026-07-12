@@ -37,7 +37,7 @@ export default function RecentActivity({ activities = [], isLoading = false }: R
       case "AUDIT":
         return <ShieldAlert className="h-4 w-4 text-rose-500" />;
       default:
-        return <Activity className="h-4 w-4 text-zinc-500" />;
+        return <Activity className="h-4 w-4 text-zinc-550" />;
     }
   };
 
@@ -70,7 +70,7 @@ export default function RecentActivity({ activities = [], isLoading = false }: R
           <div className="space-y-6 relative before:absolute before:inset-0 before:left-[15px] before:w-0.5 before:bg-zinc-100 dark:before:bg-zinc-800/80 before:h-[calc(100%-8px)]">
             {activities.map((item) => (
               <div key={item.id} className="flex items-start gap-4 relative">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-sm z-10 shrink-0">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-zinc-150 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-sm z-10 shrink-0">
                   {getActivityIcon(item.entityType)}
                 </div>
                 <div className="flex-1 min-w-0 pt-0.5">

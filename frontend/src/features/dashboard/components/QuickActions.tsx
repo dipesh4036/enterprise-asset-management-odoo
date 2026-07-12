@@ -60,7 +60,7 @@ export default function QuickActions() {
                     <h5 className="font-semibold text-zinc-900 dark:text-zinc-50 text-sm group-hover:text-indigo-650 dark:group-hover:text-indigo-400 transition-colors">
                       {action.label}
                     </h5>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                    <p className="text-xs text-zinc-500 dark:text-zinc-450 leading-relaxed">
                       {action.description}
                     </p>
                   </div>

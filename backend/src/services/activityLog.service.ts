@@ -72,10 +72,9 @@ export async function getActivityLogs(options: GetActivityLogsOptions = {}) {
   return { logs, total };
 }
 
-const activityLogService = {
+export const activityLogService = {
   logActivity,
   getActivityLogs,
 };
 
 export default activityLogService;
-
