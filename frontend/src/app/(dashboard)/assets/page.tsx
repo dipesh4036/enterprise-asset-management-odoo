@@ -10,6 +10,8 @@ import StatusBadge from "@/components/common/StatusBadge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
+import RegisterAssetModal from "@/features/assets/components/RegisterAssetModal";
 import {
   Laptop,
   PlusCircle,
@@ -24,6 +26,21 @@ import { cn } from "@/utils/cn";
 export default function AssetDirectoryPage() {
   const { user } = useAuthStore();
   const canRegister = user?.role === "ADMIN" || user?.role === "ASSET_MANAGER";
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const isRegisterQuery = searchParams.get("register") === "true";
+
+  const [isRegisterOpen, setIsRegisterOpen] = useState(isRegisterQuery);
+
+  useEffect(() => {
+    setIsRegisterOpen(isRegisterQuery);
+  }, [isRegisterQuery]);
+
+  const handleCloseRegister = () => {
+    setIsRegisterOpen(false);
+    router.push("/assets");
+  };
 
   // Filter States
   const [search, setSearch] = useState("");
@@ -152,12 +169,10 @@ export default function AssetDirectoryPage() {
             <RefreshCw className="h-4 w-4" />
           </Button>
           {canRegister && (
-            <Link href="/assets?register=true">
-              <Button size="sm" className="cursor-pointer font-medium">
-                <PlusCircle className="mr-1.5 h-4.5 w-4.5" />
-                Register Asset
-              </Button>
-            </Link>
+            <Button size="sm" onClick={() => setIsRegisterOpen(true)} className="cursor-pointer font-medium">
+              <PlusCircle className="mr-1.5 h-4.5 w-4.5" />
+              Register Asset
+            </Button>
           )}
         </div>
       </div>
@@ -257,6 +272,11 @@ export default function AssetDirectoryPage() {
         searchPlaceholder="Filter assets locally..."
         searchKey="name"
         isLoading={isLoading}
+      />
+      {/* Register Asset Modal */}
+      <RegisterAssetModal
+        isOpen={isRegisterOpen}
+        onClose={handleCloseRegister}
       />
     </div>
   );
