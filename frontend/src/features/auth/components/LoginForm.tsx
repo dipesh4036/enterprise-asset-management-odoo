@@ -104,7 +104,7 @@ export default function LoginForm({ onSubmit, isLoading, error }: LoginFormProps
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2.5 text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors cursor-pointer"
+                className="absolute right-3 top-2.5 text-zinc-450 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors cursor-pointer"
                 tabIndex={-1}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}

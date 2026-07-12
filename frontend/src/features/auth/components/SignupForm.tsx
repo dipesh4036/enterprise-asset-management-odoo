@@ -165,7 +165,7 @@ export default function SignupForm({ onSubmit, isLoading, error }: SignupFormPro
             {passwordValue && (
               <div className="space-y-1.5 pt-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-550 dark:text-zinc-400">Password Strength:</span>
+                  <span className="text-zinc-500 dark:text-zinc-400">Password Strength:</span>
                   <span className={cn("font-semibold", 
                     passwordStrength.label === "Weak" && "text-rose-500",
                     passwordStrength.label === "Medium" && "text-amber-500",
