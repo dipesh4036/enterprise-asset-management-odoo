@@ -350,6 +350,37 @@ export class AllocationService {
 
     return updatedTransfer;
   }
+
+  /**
+   * Retrieves transfer requests related to the user (sent or received)
+   */
+  async getTransferRequests(userId: string, role: string) {
+    const isManager = role === "ADMIN" || role === "ASSET_MANAGER";
+    const whereClause: any = isManager
+      ? {}
+      : {
+          OR: [
+            { fromUserId: userId },
+            { toUserId: userId },
+          ],
+        };
+
+    return prisma.transferRequest.findMany({
+      where: whereClause,
+      include: {
+        asset: {
+          select: { id: true, name: true, assetTag: true },
+        },
+        fromUser: {
+          select: { id: true, name: true, email: true },
+        },
+        toUser: {
+          select: { id: true, name: true, email: true },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+  }
 }
 
 export const allocationService = new AllocationService();

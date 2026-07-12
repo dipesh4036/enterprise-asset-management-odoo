@@ -3,6 +3,7 @@ import {
   requestTransfer,
   approveTransfer,
   rejectTransfer,
+  getTransferRequests,
 } from "../controllers/allocation.controller";
 import { authMiddleware } from "../middleware/auth.middleware";
 import { requireRole } from "../middleware/role.middleware";
@@ -14,6 +15,9 @@ const router = Router();
 
 // Apply auth middleware
 router.use(authMiddleware);
+
+// ─── Get Transfer Requests (Any Authenticated User) ──────────
+router.get("/", getTransferRequests);
 
 // ─── Request Transfer (Any Authenticated User) ───────────────
 router.post(
