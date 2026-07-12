@@ -14,5 +14,6 @@ Thumbs.db
 
 # Dependency directories
 **/node_modules/
+**/dist/
 
 docs/
