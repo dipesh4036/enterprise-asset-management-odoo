@@ -131,25 +131,6 @@ export default function Sidebar() {
           );
         })}
       </nav>
-
-      {/* User Info Footer */}
-      {user && (
-        <div className="px-4 py-3 border-t border-border">
-          <div className="flex items-center gap-2.5 px-2 py-2 rounded-lg bg-muted/50">
-            <div className="h-7 w-7 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold text-primary shrink-0">
-              {user.name?.charAt(0)?.toUpperCase() ?? "U"}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-foreground truncate">
-                {user.name}
-              </p>
-              <p className="text-[10px] text-muted-foreground truncate">
-                {user.role.replace(/_/g, " ")}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </aside>
   );
 }
