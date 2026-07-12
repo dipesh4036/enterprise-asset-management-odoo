@@ -133,3 +133,22 @@ export const rejectTransfer = asyncHandler(async (req: Request, res: Response) =
     sendError(res, message, 400);
   }
 });
+
+export const getTransferRequests = asyncHandler(async (req: Request, res: Response) => {
+  try {
+    if (!req.user) {
+      sendError(res, "Authentication required", 401);
+      return;
+    }
+
+    const transfers = await allocationService.getTransferRequests(
+      req.user.id,
+      req.user.role
+    );
+
+    sendSuccess(res, transfers, "Transfer requests retrieved successfully");
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Failed to retrieve transfer requests";
+    sendError(res, message, 400);
+  }
+});
