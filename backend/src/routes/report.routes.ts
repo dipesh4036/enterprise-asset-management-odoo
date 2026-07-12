@@ -24,15 +24,5 @@ router.get("/department-summary", getDepartmentSummary);
 router.get("/due-maintenance", getDueMaintenance);
 router.get("/export", exportCSV);
 
-const router = Router();
-
-// Placeholder for Reports module
-router.get("/utilization", (_req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Utilization reports placeholder",
-    data: [],
-  });
-});
-
 export default router;
+
