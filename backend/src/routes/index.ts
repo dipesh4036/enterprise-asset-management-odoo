@@ -6,8 +6,9 @@ import { Router } from "express";
 const router = Router();
 
 // Routes will be mounted here as they are built:
-// import authRoutes from "./auth.routes";
-// import dashboardRoutes from "./dashboard.routes";
+import authRoutes from "./auth.routes";
+
+// router.use("/dashboard", dashboardRoutes);
 // import organizationRoutes from "./organization.routes";
 // import assetRoutes from "./asset.routes";
 // import allocationRoutes from "./allocation.routes";
@@ -17,7 +18,7 @@ const router = Router();
 // import reportRoutes from "./report.routes";
 // import notificationRoutes from "./notification.routes";
 
-// router.use("/auth", authRoutes);
+router.use("/auth", authRoutes);
 // router.use("/dashboard", dashboardRoutes);
 // router.use("/departments", organizationRoutes);
 // router.use("/assets", assetRoutes);
