@@ -10,12 +10,13 @@ import {
 } from "../hooks/useOrg";
 import { Employee, Role } from "../services/org.service";
 import DataTable, { Column } from "@/components/common/DataTable";
+import EmptyState from "@/components/common/EmptyState";
 import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import StatusBadge from "@/components/common/StatusBadge";
 import { useAuthStore } from "@/store/auth.store";
-import { Shield, UserCog, ToggleLeft, ToggleRight } from "lucide-react";
+import { Shield, UserCog, ToggleLeft, ToggleRight, Users } from "lucide-react";
 
 interface RoleFormInputs {
   role: Role;
@@ -191,6 +192,13 @@ export default function EmployeesTab() {
         searchPlaceholder="Search employees by name or email..."
         searchKey="name"
         isLoading={empsLoading}
+        emptyState={
+          <EmptyState
+            icon={<Users className="h-8 w-8 text-zinc-400" />}
+            title="No Employees Found"
+            description="There are no registered personnel matching your search term."
+          />
+        }
       />
 
       {/* Role Promotion Modal (Admin Only) */}
