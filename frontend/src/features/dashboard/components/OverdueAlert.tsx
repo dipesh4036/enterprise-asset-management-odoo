@@ -67,7 +67,7 @@ export default function OverdueAlert({ items = [], isLoading = false }: OverdueA
                     </span>
                   </div>
                 </div>
-                <Link href={`/allocation`} passHref>
+                <Link href={`/allocations`} passHref>
                   <Button variant="outline" size="sm" className="border-rose-200 hover:bg-rose-100/50 dark:border-rose-900/50 dark:hover:bg-rose-950/40 text-rose-800 dark:text-rose-400 font-medium">
                     Manage Return
                     <ArrowRight className="ml-1 h-3.5 w-3.5" />
