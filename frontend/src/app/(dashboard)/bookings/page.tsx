@@ -59,7 +59,7 @@ export default function BookingsPage() {
   const { data: assetsRes, isLoading: loadingAssets } = useQuery<BookableAsset[]>({
     queryKey: ["bookable-assets-options"],
     queryFn: async () => {
-      const res = await api.get("/assets");
+      const res = await api.get("/assets", { params: { limit: 1000 } });
       return (res.data.data || []).filter((a: any) => a.isBookable);
     },
   });

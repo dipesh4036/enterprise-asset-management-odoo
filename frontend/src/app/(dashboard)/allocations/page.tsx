@@ -63,7 +63,7 @@ export default function AllocationsPage() {
   const { data: assetsRes, isLoading: loadingAssets } = useQuery<AssetOption[]>({
     queryKey: ["allocatable-assets"],
     queryFn: async () => {
-      const res = await api.get("/assets");
+      const res = await api.get("/assets", { params: { limit: 1000 } });
       return (res.data.data || []).filter((a: any) => a.status === "AVAILABLE");
     },
   });

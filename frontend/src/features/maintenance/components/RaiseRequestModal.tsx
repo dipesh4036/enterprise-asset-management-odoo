@@ -65,7 +65,7 @@ export default function RaiseRequestModal({
   const { data: assets, isLoading: isLoadingAssets } = useQuery<AssetOption[]>({
     queryKey: ["assets-list-options"],
     queryFn: async () => {
-      const response = await api.get("/assets");
+      const response = await api.get("/assets", { params: { limit: 1000 } });
       // Extract asset list from API response
       return response.data.data || [];
     },
