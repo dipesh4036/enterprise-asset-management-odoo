@@ -150,7 +150,7 @@ export function AssignTechnicianModal({ isOpen, onClose, requestId }: AssignTech
   const { data: employees, isLoading: isLoadingEmployees } = useQuery<EmployeeOption[]>({
     queryKey: ["employees-technicians-list"],
     queryFn: async () => {
-      const response = await api.get("/employees");
+      const response = await api.get("/organization/employees");
       return response.data.data || [];
     },
     enabled: isOpen,

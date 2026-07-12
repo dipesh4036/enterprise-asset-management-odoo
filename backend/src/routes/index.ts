@@ -18,6 +18,7 @@ const router = Router();
 
 router.use("/auth", authRoutes);
 router.use("/dashboard", dashboardRoutes);
+router.use("/organization", organizationRoutes);
 router.use("/", organizationRoutes);
 router.use("/assets", assetRoutes);
 router.use("/allocations", allocationRoutes);
