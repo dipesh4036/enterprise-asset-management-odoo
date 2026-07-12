@@ -125,7 +125,7 @@ erDiagram
 #### Backend (`backend/.env`)
 Create a `.env` file in the `backend` folder. Note that port `5001` prevents conflicts with macOS Control Center/AirPlay listening on `5000`:
 ```env
-DATABASE_URL="postgresql://neondb_owner:npg_Ctr1LDn0pWzY@ep-odd-cherry-aoa6bwtl-pooler.c-2.ap-southeast-1.aws.neon.tech/assetflow?sslmode=require&channel_binding=require"
+DATABASE_URL="postgresql://user:password@localhost:5432/assetflow"
 JWT_SECRET="your-super-secret-jwt-key"
 JWT_EXPIRES_IN="7d"
 PORT=5001
