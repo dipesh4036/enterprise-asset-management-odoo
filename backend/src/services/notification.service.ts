@@ -68,7 +68,7 @@ export async function markAllAsRead(userId: string) {
   });
 }
 
-const notificationService = {
+export const notificationService = {
   createNotification,
   getUserNotifications,
   markAsRead,
@@ -76,4 +76,3 @@ const notificationService = {
 };
 
 export default notificationService;
-
