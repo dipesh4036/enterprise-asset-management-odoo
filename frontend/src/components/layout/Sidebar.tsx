@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
 import { useState, useEffect } from "react";
+import type { LucideProps } from "lucide-react";
 import {
   LayoutDashboard,
   Building2,
@@ -17,10 +18,12 @@ import {
   Bell,
 } from "lucide-react";
 
+type LucideIcon = React.ComponentType<LucideProps>;
+
 interface NavItem {
   label: string;
   href: string;
-  icon: any;
+  icon: LucideIcon;
   allowedRoles?: Role[];
 }
 
@@ -33,11 +36,24 @@ const navItems: NavItem[] = [
     allowedRoles: ["ADMIN"],
   },
   { label: "Asset Registry", href: "/assets", icon: Laptop },
-  { label: "Allocation & Transfer", href: "/allocation", icon: ArrowLeftRight },
-  { label: "Resource Booking", href: "/booking", icon: CalendarDays },
+  {
+    label: "Allocation & Transfer",
+    href: "/allocations",
+    icon: ArrowLeftRight,
+  },
+  {
+    label: "Resource Booking",
+    href: "/bookings",
+    icon: CalendarDays,
+  },
   { label: "Maintenance", href: "/maintenance", icon: Wrench },
   { label: "Asset Audit", href: "/audit", icon: ClipboardCheck },
-  { label: "Reports & Analytics", href: "/reports", icon: BarChart3 },
+  {
+    label: "Reports & Analytics",
+    href: "/reports",
+    icon: BarChart3,
+    allowedRoles: ["ADMIN", "ASSET_MANAGER", "DEPARTMENT_HEAD"],
+  },
   { label: "Notifications", href: "/notifications", icon: Bell },
 ];
 
@@ -71,15 +87,20 @@ export default function Sidebar() {
 
   return (
     <aside className="w-64 border-r border-border bg-card flex flex-col h-screen shrink-0">
-      <div className="flex h-16 items-center px-6 border-b border-border">
-        <span className="text-xl font-bold tracking-wider text-foreground">
-          ASSETFLOW
+      {/* Logo / Brand */}
+      <div className="flex h-16 items-center px-6 border-b border-border gap-2.5">
+        <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
+          <Laptop className="h-4 w-4 text-primary-foreground" />
+        </div>
+        <span className="text-lg font-bold tracking-wider text-foreground">
+          AssetFlow
         </span>
       </div>
 
-      <nav className="flex-1 space-y-1.5 px-4 py-6 overflow-y-auto">
+      <nav className="flex-1 space-y-0.5 px-3 py-4 overflow-y-auto">
         {filteredItems.map((item) => {
-          const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+          const isActive =
+            pathname === item.href || pathname.startsWith(item.href + "/");
           const Icon = item.icon;
 
           return (
@@ -110,6 +131,25 @@ export default function Sidebar() {
           );
         })}
       </nav>
+
+      {/* User Info Footer */}
+      {user && (
+        <div className="px-4 py-3 border-t border-border">
+          <div className="flex items-center gap-2.5 px-2 py-2 rounded-lg bg-muted/50">
+            <div className="h-7 w-7 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold text-primary shrink-0">
+              {user.name?.charAt(0)?.toUpperCase() ?? "U"}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-foreground truncate">
+                {user.name}
+              </p>
+              <p className="text-[10px] text-muted-foreground truncate">
+                {user.role.replace(/_/g, " ")}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </aside>
   );
 }

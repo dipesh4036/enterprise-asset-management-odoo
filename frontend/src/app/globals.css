@@ -1,64 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
 @variant dark (&:where(.dark, .dark *));
 
+/* ─── Design Tokens ──────────────────────────────────────── */
+
 :root {
-  --background: oklch(0.99 0.005 240);
-  --foreground: oklch(0.12 0.01 240);
+  /* Colors — Teal / Slate palette (professional ERP tone) */
+  --background: oklch(0.985 0.003 240);
+  --foreground: oklch(0.12 0.012 240);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0.01 240);
+  --card-foreground: oklch(0.12 0.012 240);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0.01 240);
-  
-  --primary: oklch(0.48 0.14 190);
-  --primary-foreground: oklch(0.99 0.005 240);
-  
-  --secondary: oklch(0.96 0.01 240);
-  --secondary-foreground: oklch(0.12 0.01 240);
-  
-  --muted: oklch(0.96 0.01 240);
-  --muted-foreground: oklch(0.45 0.02 240);
-  
-  --accent: oklch(0.94 0.02 190);
-  --accent-foreground: oklch(0.2 0.08 190);
-  
-  --destructive: oklch(0.6 0.18 29);
-  --destructive-foreground: oklch(0.99 0.005 240);
-  
-  --border: oklch(0.9 0.01 240);
-  --input: oklch(0.9 0.01 240);
-  --ring: oklch(0.48 0.14 190);
-  
-  --radius: 0.75rem;
+  --popover-foreground: oklch(0.12 0.012 240);
+
+  --primary: oklch(0.46 0.16 210);
+  --primary-foreground: oklch(0.99 0.003 240);
+
+  --secondary: oklch(0.96 0.008 240);
+  --secondary-foreground: oklch(0.20 0.012 240);
+
+  --muted: oklch(0.955 0.008 240);
+  --muted-foreground: oklch(0.46 0.018 240);
+
+  --accent: oklch(0.93 0.025 200);
+  --accent-foreground: oklch(0.18 0.09 200);
+
+  --destructive: oklch(0.58 0.20 27);
+  --destructive-foreground: oklch(0.99 0.003 240);
+
+  --border: oklch(0.88 0.008 240);
+  --input: oklch(0.88 0.008 240);
+  --ring: oklch(0.46 0.16 210);
+
+  --radius: 0.625rem;
+
+  /* Status colour tokens */
+  --status-available: oklch(0.56 0.16 145);
+  --status-allocated: oklch(0.50 0.15 220);
+  --status-maintenance: oklch(0.60 0.18 55);
+  --status-reserved: oklch(0.52 0.18 280);
+  --status-lost: oklch(0.52 0.20 27);
+  --status-retired: oklch(0.48 0.01 240);
+  --status-disposed: oklch(0.36 0.01 240);
 }
 
-.dark, [data-theme="dark"] {
-  --background: oklch(0.12 0.01 240);
-  --foreground: oklch(0.97 0.005 240);
-  --card: oklch(0.15 0.01 240);
-  --card-foreground: oklch(0.97 0.005 240);
-  --popover: oklch(0.15 0.01 240);
-  --popover-foreground: oklch(0.97 0.005 240);
-  
-  --primary: oklch(0.65 0.12 190);
-  --primary-foreground: oklch(0.12 0.01 240);
-  
-  --secondary: oklch(0.18 0.01 240);
-  --secondary-foreground: oklch(0.97 0.005 240);
-  
-  --muted: oklch(0.18 0.01 240);
-  --muted-foreground: oklch(0.65 0.01 240);
-  
-  --accent: oklch(0.18 0.02 190);
-  --accent-foreground: oklch(0.85 0.06 190);
-  
-  --destructive: oklch(0.45 0.16 29);
-  --destructive-foreground: oklch(0.97 0.005 240);
-  
-  --border: oklch(0.22 0.01 240);
-  --input: oklch(0.22 0.01 240);
-  --ring: oklch(0.65 0.12 190);
+.dark,
+[data-theme="dark"] {
+  --background: oklch(0.115 0.012 240);
+  --foreground: oklch(0.97 0.004 240);
+  --card: oklch(0.148 0.012 240);
+  --card-foreground: oklch(0.97 0.004 240);
+  --popover: oklch(0.148 0.012 240);
+  --popover-foreground: oklch(0.97 0.004 240);
+
+  --primary: oklch(0.64 0.14 210);
+  --primary-foreground: oklch(0.115 0.012 240);
+
+  --secondary: oklch(0.185 0.012 240);
+  --secondary-foreground: oklch(0.97 0.004 240);
+
+  --muted: oklch(0.185 0.012 240);
+  --muted-foreground: oklch(0.62 0.012 240);
+
+  --accent: oklch(0.20 0.025 200);
+  --accent-foreground: oklch(0.84 0.07 200);
+
+  --destructive: oklch(0.44 0.17 27);
+  --destructive-foreground: oklch(0.97 0.004 240);
+
+  --border: oklch(0.225 0.012 240);
+  --input: oklch(0.225 0.012 240);
+  --ring: oklch(0.64 0.14 210);
 }
+
+/* ─── Tailwind Theme Mapping ─────────────────────────────── */
 
 @theme inline {
   --color-background: var(--background);
@@ -85,11 +101,228 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Use Inter as primary font */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "GeistMono", ui-monospace, monospace;
+
+  /* Animation durations */
+  --animate-duration-fast: 150ms;
+  --animate-duration-normal: 250ms;
+  --animate-duration-slow: 400ms;
+}
+
+/* ─── Base Styles ────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.75 0.01 240);
+  border-radius: 99px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: oklch(0.30 0.01 240);
+}
+
+/* Focus rings */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: oklch(0.46 0.16 210 / 0.2);
+}
+
+/* ─── Keyframe Animations ────────────────────────────────── */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInFast {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -468px 0; }
+  100% { background-position: 468px 0; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.46 0.16 210 / 0.35); }
+  50%       { box-shadow: 0 0 0 6px oklch(0.46 0.16 210 / 0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ─── Animation Utility Classes ─────────────────────────── */
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out both;
+}
+
+.animate-fadeInFast {
+  animation: fadeInFast 0.15s ease-out both;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.25s ease-out both;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.25s ease-out both;
+}
+
+.animate-slideInUp {
+  animation: slideInUp 0.25s ease-out both;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out both;
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.93 0.005 240) 0px,
+    oklch(0.97 0.005 240) 40px,
+    oklch(0.93 0.005 240) 80px
+  );
+  background-size: 600px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.dark .animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.18 0.01 240) 0px,
+    oklch(0.22 0.01 240) 40px,
+    oklch(0.18 0.01 240) 80px
+  );
+  background-size: 600px;
+}
+
+/* Staggered children animations */
+.stagger-children > * {
+  animation: fadeIn 0.3s ease-out both;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 300ms; }
+
+/* ─── Utility Classes ────────────────────────────────────── */
+
+/* Card glass effect */
+.glass-card {
+  background: oklch(1 0 0 / 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid oklch(0.88 0.008 240 / 0.5);
+}
+.dark .glass-card {
+  background: oklch(0.148 0.012 240 / 0.7);
+  border-color: oklch(0.225 0.012 240 / 0.5);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, oklch(0.46 0.16 210), oklch(0.62 0.18 250));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
