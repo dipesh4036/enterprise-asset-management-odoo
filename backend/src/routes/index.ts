@@ -12,7 +12,7 @@ import authRoutes from "./auth.routes";
 import dashboardRoutes from "./dashboard.routes";
 import organizationRoutes from "./organization.routes";
 
-// import assetRoutes from "./asset.routes";
+import assetRoutes from "./asset.routes";
 // import allocationRoutes from "./allocation.routes";
 // import bookingRoutes from "./booking.routes";
 // import auditRoutes from "./audit.routes";
@@ -21,7 +21,7 @@ import organizationRoutes from "./organization.routes";
 router.use("/auth", authRoutes);
 router.use("/dashboard", dashboardRoutes);
 router.use("/", organizationRoutes);
-// router.use("/assets", assetRoutes);
+router.use("/assets", assetRoutes);
 // router.use("/allocations", allocationRoutes);
 // router.use("/bookings", bookingRoutes);
 router.use("/maintenance", maintenanceRoutes);
