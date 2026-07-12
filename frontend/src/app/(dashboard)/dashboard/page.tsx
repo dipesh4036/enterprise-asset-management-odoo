@@ -56,7 +56,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-fadeIn">
           <KPICard
             label="Available Assets"
-            value={kpis?.availableCount ?? 0}
+            value={kpis?.available ?? 0}
             icon={Laptop}
             color="blue"
             description="Ready in inventory"
@@ -64,7 +64,7 @@ export default function DashboardPage() {
           />
           <KPICard
             label="Allocated Assets"
-            value={kpis?.allocatedCount ?? 0}
+            value={kpis?.allocated ?? 0}
             icon={CheckCircle}
             color="emerald"
             description="In use by employees"
@@ -72,7 +72,7 @@ export default function DashboardPage() {
           />
           <KPICard
             label="Under Maintenance"
-            value={kpis?.maintenanceTodayCount ?? 0}
+            value={kpis?.maintenance ?? 0}
             icon={Wrench}
             color="amber"
             description="Repair status today"
@@ -80,14 +80,14 @@ export default function DashboardPage() {
           />
           <KPICard
             label="Active Bookings"
-            value={kpis?.activeBookingsCount ?? 0}
+            value={kpis?.bookings ?? 0}
             icon={Calendar}
             color="indigo"
             description="Scheduled meetings & devices"
           />
           <KPICard
             label="Pending Transfers"
-            value={kpis?.pendingTransfersCount ?? 0}
+            value={kpis?.transfers ?? 0}
             icon={RefreshCw}
             color="zinc"
             description="Awaiting verification"
@@ -95,7 +95,7 @@ export default function DashboardPage() {
           />
           <KPICard
             label="Overdue Returns"
-            value={kpis?.overdueCount ?? 0}
+            value={kpis?.overdue ?? 0}
             icon={AlertTriangle}
             color="rose"
             description="Returns past due date"
