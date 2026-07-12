@@ -39,19 +39,19 @@ export default function LoginForm({ onSubmit, isLoading, error }: LoginFormProps
   });
 
   return (
-    <Card className="w-full max-w-md bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800/80 rounded-2xl shadow-xl">
-      <CardHeader className="space-y-2 text-center pb-2">
-        <CardTitle className="text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-600 dark:from-zinc-50 dark:to-zinc-400">
+    <Card className="w-full max-w-md bg-card border border-border rounded-lg shadow-sm">
+      <CardHeader className="space-y-1.5 text-center pb-4 pt-6">
+        <CardTitle className="text-2xl font-semibold tracking-tight text-foreground">
           Welcome Back
         </CardTitle>
-        <CardDescription className="text-sm text-zinc-500 dark:text-zinc-400">
+        <CardDescription className="text-sm text-muted-foreground">
           Enter your credentials to access your asset portal
         </CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-4">
         {error && (
-          <div className="p-3 text-sm text-rose-600 bg-rose-50 dark:bg-rose-950/30 dark:text-rose-400 border border-rose-200 dark:border-rose-900/50 rounded-lg">
+          <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md">
             {error}
           </div>
         )}
@@ -59,11 +59,11 @@ export default function LoginForm({ onSubmit, isLoading, error }: LoginFormProps
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Email */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+            <label className="text-xs font-medium text-muted-foreground">
               Email Address
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-2.5 h-4.5 w-4.5 text-zinc-400 pointer-events-none" />
+              <Mail className="absolute left-3 top-2.5 h-4.5 w-4.5 text-muted-foreground/60 pointer-events-none" />
               <Input
                 type="email"
                 placeholder="name@company.com"
@@ -73,7 +73,7 @@ export default function LoginForm({ onSubmit, isLoading, error }: LoginFormProps
               />
             </div>
             {errors.email && (
-              <p className="text-xs text-rose-600 dark:text-rose-400 font-medium">
+              <p className="text-xs text-destructive font-medium">
                 {errors.email.message}
               </p>
             )}
@@ -82,18 +82,18 @@ export default function LoginForm({ onSubmit, isLoading, error }: LoginFormProps
           {/* Password */}
           <div className="space-y-1.5">
             <div className="flex justify-between items-center">
-              <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+              <label className="text-xs font-medium text-muted-foreground">
                 Password
               </label>
               <Link
                 href="/forgot-password"
-                className="text-xs text-zinc-650 dark:text-zinc-450 hover:underline hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
+                className="text-xs text-muted-foreground hover:underline hover:text-foreground transition-colors"
               >
                 Forgot password?
               </Link>
             </div>
             <div className="relative">
-              <Lock className="absolute left-3 top-2.5 h-4.5 w-4.5 text-zinc-400 pointer-events-none" />
+              <Lock className="absolute left-3 top-2.5 h-4.5 w-4.5 text-muted-foreground/60 pointer-events-none" />
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
@@ -104,21 +104,21 @@ export default function LoginForm({ onSubmit, isLoading, error }: LoginFormProps
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2.5 text-zinc-450 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors cursor-pointer"
+                className="absolute right-3 top-2.5 text-muted-foreground/60 hover:text-foreground transition-colors cursor-pointer"
                 tabIndex={-1}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
             </div>
             {errors.password && (
-              <p className="text-xs text-rose-600 dark:text-rose-400 font-medium">
+              <p className="text-xs text-destructive font-medium">
                 {errors.password.message}
               </p>
             )}
           </div>
 
           {/* Submit */}
-          <Button type="submit" className="w-full h-10 cursor-pointer" disabled={isLoading}>
+          <Button type="submit" size="lg" className="w-full h-9 cursor-pointer mt-2" disabled={isLoading}>
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -131,11 +131,11 @@ export default function LoginForm({ onSubmit, isLoading, error }: LoginFormProps
         </form>
       </CardContent>
 
-      <CardFooter className="flex justify-center text-xs text-zinc-505 dark:text-zinc-400">
+      <CardFooter className="flex justify-center text-xs text-muted-foreground pb-6">
         New to AssetFlow?{" "}
         <Link
           href="/signup"
-          className="ml-1 font-semibold text-zinc-800 dark:text-zinc-300 hover:underline"
+          className="ml-1 font-semibold text-primary hover:underline"
         >
           Create an account
         </Link>
