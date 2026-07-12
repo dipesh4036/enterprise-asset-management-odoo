@@ -1,7 +1,6 @@
 import prisma from "../config/database";
 import { Role, UserStatus } from "@prisma/client";
 import { activityLogService } from "./activityLog.service";
-import { ACTIVITY_ACTIONS, ENTITY_TYPES } from "../config/constants";
 
 export class OrganizationService {
   // ═══════════════════════════════════════
@@ -68,8 +67,8 @@ export class OrganizationService {
 
     await activityLogService.logActivity(
       userId,
-      ACTIVITY_ACTIONS.USER_ROLE_UPDATED, // Use generic action or log department action
-      ENTITY_TYPES.DEPARTMENT,
+      "DEPARTMENT_CREATED",
+      "DEPARTMENT",
       dept.id,
       { name: dept.name }
     );
@@ -110,7 +109,7 @@ export class OrganizationService {
     await activityLogService.logActivity(
       userId,
       "DEPARTMENT_UPDATED",
-      ENTITY_TYPES.DEPARTMENT,
+      "DEPARTMENT",
       updated.id,
       { name: updated.name }
     );
@@ -130,7 +129,7 @@ export class OrganizationService {
     await activityLogService.logActivity(
       userId,
       "DEPARTMENT_STATUS_TOGGLED",
-      ENTITY_TYPES.DEPARTMENT,
+      "DEPARTMENT",
       updated.id,
       { name: updated.name, status }
     );
@@ -162,7 +161,7 @@ export class OrganizationService {
     await activityLogService.logActivity(
       userId,
       "CATEGORY_CREATED",
-      ENTITY_TYPES.CATEGORY,
+      "CATEGORY",
       category.id,
       { name: category.name }
     );
@@ -190,7 +189,7 @@ export class OrganizationService {
     await activityLogService.logActivity(
       userId,
       "CATEGORY_UPDATED",
-      ENTITY_TYPES.CATEGORY,
+      "CATEGORY",
       updated.id,
       { name: updated.name }
     );
@@ -249,8 +248,8 @@ export class OrganizationService {
 
     await activityLogService.logActivity(
       adminId,
-      ACTIVITY_ACTIONS.USER_ROLE_UPDATED,
-      ENTITY_TYPES.USER,
+      "USER_ROLE_UPDATED",
+      "USER",
       updated.id,
       { email: updated.email, oldRole: employee.role, newRole }
     );
@@ -280,8 +279,8 @@ export class OrganizationService {
 
     await activityLogService.logActivity(
       adminId,
-      ACTIVITY_ACTIONS.USER_STATUS_UPDATED,
-      ENTITY_TYPES.USER,
+      "USER_STATUS_UPDATED",
+      "USER",
       updated.id,
       { email: updated.email, status }
     );
