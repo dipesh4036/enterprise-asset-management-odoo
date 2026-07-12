@@ -1,5 +1,6 @@
 import { Router } from "express";
 import notificationRoutes, { activityLogRouter } from "./notification.routes";
+import maintenanceRoutes from "./maintenance.routes";
 
 // ─── API Routes Index ──────────────────────────────────────
 // All route files are mounted here under /api/v1
@@ -14,7 +15,6 @@ import organizationRoutes from "./organization.routes";
 // import assetRoutes from "./asset.routes";
 // import allocationRoutes from "./allocation.routes";
 // import bookingRoutes from "./booking.routes";
-// import maintenanceRoutes from "./maintenance.routes";
 // import auditRoutes from "./audit.routes";
 // import reportRoutes from "./report.routes";
 
@@ -24,7 +24,7 @@ router.use("/", organizationRoutes);
 // router.use("/assets", assetRoutes);
 // router.use("/allocations", allocationRoutes);
 // router.use("/bookings", bookingRoutes);
-// router.use("/maintenance", maintenanceRoutes);
+router.use("/maintenance", maintenanceRoutes);
 // router.use("/audits", auditRoutes);
 // router.use("/reports", reportRoutes);
 
