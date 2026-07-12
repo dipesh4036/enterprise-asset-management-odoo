@@ -12,12 +12,13 @@ import {
 } from "../hooks/useOrg";
 import { Department } from "../services/org.service";
 import DataTable, { Column } from "@/components/common/DataTable";
+import EmptyState from "@/components/common/EmptyState";
 import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import StatusBadge from "@/components/common/StatusBadge";
-import { PlusCircle, Edit2, ShieldAlert } from "lucide-react";
+import { PlusCircle, Edit2, ShieldAlert, Building2 } from "lucide-react";
 
 interface FormInputs {
   name: string;
@@ -204,6 +205,18 @@ export default function DepartmentsTab() {
         searchPlaceholder="Search departments..."
         searchKey="name"
         isLoading={deptsLoading}
+        emptyState={
+          <EmptyState
+            icon={<Building2 className="h-8 w-8 text-zinc-400" />}
+            title="No Departments Setup"
+            description="Create your company's corporate structure by adding your first department."
+            action={
+              <Button size="sm" onClick={openCreateModal} className="cursor-pointer">
+                Add Department
+              </Button>
+            }
+          />
+        }
       />
 
       {/* Create/Edit Modal */}

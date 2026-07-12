@@ -10,6 +10,7 @@ import KPICard from "@/features/dashboard/components/KPICard";
 import OverdueAlert from "@/features/dashboard/components/OverdueAlert";
 import QuickActions from "@/features/dashboard/components/QuickActions";
 import RecentActivity from "@/features/dashboard/components/RecentActivity";
+import LoadingSkeleton from "@/components/common/LoadingSkeleton";
 import {
   Laptop,
   CheckCircle,
@@ -49,55 +50,59 @@ export default function DashboardPage() {
       <OverdueAlert items={overdueItems} isLoading={overdueLoading} />
 
       {/* Grid of KPI Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-fadeIn">
-        <KPICard
-          label="Available Assets"
-          value={kpis?.availableCount ?? 0}
-          icon={Laptop}
-          color="blue"
-          description="Ready in inventory"
-          allowedRoles={["ADMIN", "ASSET_MANAGER"]}
-        />
-        <KPICard
-          label="Allocated Assets"
-          value={kpis?.allocatedCount ?? 0}
-          icon={CheckCircle}
-          color="emerald"
-          description="In use by employees"
-          allowedRoles={["ADMIN", "ASSET_MANAGER"]}
-        />
-        <KPICard
-          label="Under Maintenance"
-          value={kpis?.maintenanceTodayCount ?? 0}
-          icon={Wrench}
-          color="amber"
-          description="Repair status today"
-          allowedRoles={["ADMIN", "ASSET_MANAGER", "DEPARTMENT_HEAD"]}
-        />
-        <KPICard
-          label="Active Bookings"
-          value={kpis?.activeBookingsCount ?? 0}
-          icon={Calendar}
-          color="indigo"
-          description="Scheduled meetings & devices"
-        />
-        <KPICard
-          label="Pending Transfers"
-          value={kpis?.pendingTransfersCount ?? 0}
-          icon={RefreshCw}
-          color="zinc"
-          description="Awaiting verification"
-          allowedRoles={["ADMIN", "ASSET_MANAGER"]}
-        />
-        <KPICard
-          label="Overdue Returns"
-          value={kpis?.overdueCount ?? 0}
-          icon={AlertTriangle}
-          color="rose"
-          description="Returns past due date"
-          allowedRoles={["ADMIN", "ASSET_MANAGER", "DEPARTMENT_HEAD"]}
-        />
-      </div>
+      {kpisLoading ? (
+        <LoadingSkeleton type="card" rows={4} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-fadeIn">
+          <KPICard
+            label="Available Assets"
+            value={kpis?.availableCount ?? 0}
+            icon={Laptop}
+            color="blue"
+            description="Ready in inventory"
+            allowedRoles={["ADMIN", "ASSET_MANAGER"]}
+          />
+          <KPICard
+            label="Allocated Assets"
+            value={kpis?.allocatedCount ?? 0}
+            icon={CheckCircle}
+            color="emerald"
+            description="In use by employees"
+            allowedRoles={["ADMIN", "ASSET_MANAGER"]}
+          />
+          <KPICard
+            label="Under Maintenance"
+            value={kpis?.maintenanceTodayCount ?? 0}
+            icon={Wrench}
+            color="amber"
+            description="Repair status today"
+            allowedRoles={["ADMIN", "ASSET_MANAGER", "DEPARTMENT_HEAD"]}
+          />
+          <KPICard
+            label="Active Bookings"
+            value={kpis?.activeBookingsCount ?? 0}
+            icon={Calendar}
+            color="indigo"
+            description="Scheduled meetings & devices"
+          />
+          <KPICard
+            label="Pending Transfers"
+            value={kpis?.pendingTransfersCount ?? 0}
+            icon={RefreshCw}
+            color="zinc"
+            description="Awaiting verification"
+            allowedRoles={["ADMIN", "ASSET_MANAGER"]}
+          />
+          <KPICard
+            label="Overdue Returns"
+            value={kpis?.overdueCount ?? 0}
+            icon={AlertTriangle}
+            color="rose"
+            description="Returns past due date"
+            allowedRoles={["ADMIN", "ASSET_MANAGER", "DEPARTMENT_HEAD"]}
+          />
+        </div>
+      )}
 
       {/* Quick actions panel */}
       <QuickActions />

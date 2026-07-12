@@ -7,6 +7,7 @@ import { useAuthStore } from "@/store/auth.store";
 import { Asset, AssetStatus } from "@/features/assets/services/asset.service";
 import DataTable, { Column } from "@/components/common/DataTable";
 import StatusBadge from "@/components/common/StatusBadge";
+import EmptyState from "@/components/common/EmptyState";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -272,6 +273,20 @@ export default function AssetDirectoryPage() {
         searchPlaceholder="Filter assets locally..."
         searchKey="name"
         isLoading={isLoading}
+        emptyState={
+          <EmptyState
+            icon={<Laptop className="h-8 w-8 text-zinc-400" />}
+            title="No Assets Found"
+            description="There are no assets registered matching your current filter criteria."
+            action={
+              canRegister ? (
+                <Button size="sm" onClick={() => setIsRegisterOpen(true)} className="cursor-pointer">
+                  Register New Asset
+                </Button>
+              ) : undefined
+            }
+          />
+        }
       />
       {/* Register Asset Modal */}
       <RegisterAssetModal

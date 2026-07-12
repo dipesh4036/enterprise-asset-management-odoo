@@ -2,6 +2,7 @@
 
 import { useState, use } from "react";
 import { useAsset, useAssetAllocationHistory, useAssetMaintenanceHistory } from "@/features/assets/hooks/useAssets";
+import { AssetAllocation, AssetMaintenance } from "@/features/assets/services/asset.service";
 import { useAuthStore } from "@/store/auth.store";
 import StatusBadge from "@/components/common/StatusBadge";
 import { Button } from "@/components/ui/button";
@@ -293,7 +294,7 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
                   </div>
                 ) : (
                   <div className="space-y-6 relative before:absolute before:inset-0 before:left-[11px] before:w-0.5 before:bg-zinc-100 dark:before:bg-zinc-800 before:h-[calc(100%-8px)]">
-                    {allocations.map((alloc: any) => {
+                    {allocations.map((alloc: AssetAllocation) => {
                       const isActive = alloc.status === "ALLOCATED" || alloc.status === "OVERDUE";
                       return (
                         <div key={alloc.id} className="flex items-start gap-4 relative">
@@ -373,7 +374,7 @@ export default function AssetDetailPage({ params }: { params: Promise<{ id: stri
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {maintenanceRequests.map((req: any) => (
+                    {maintenanceRequests.map((req: AssetMaintenance) => (
                       <div key={req.id} className="border border-zinc-200 dark:border-zinc-800 p-4 rounded-xl hover:shadow-sm transition-all duration-200 space-y-3 bg-zinc-50/10">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                           <div className="space-y-1">

@@ -28,6 +28,7 @@ interface DataTableProps<T> {
   onSearch?: (value: string) => void;
   actions?: ReactNode;
   isLoading?: boolean;
+  emptyState?: ReactNode;
 }
 
 export default function DataTable<T>({
@@ -38,6 +39,7 @@ export default function DataTable<T>({
   onSearch,
   actions,
   isLoading = false,
+  emptyState,
 }: DataTableProps<T>) {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: "asc" | "desc" } | null>(null);
@@ -144,18 +146,19 @@ export default function DataTable<T>({
           </TableHeader>
           <TableBody>
             {isLoading ? (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="px-6 py-8 text-center text-zinc-550">
-                  <span className="inline-flex items-center gap-2 text-zinc-500">
-                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-650" />
-                    Loading...
-                  </span>
-                </TableCell>
-              </TableRow>
+              Array.from({ length: 5 }).map((_, rowIndex) => (
+                <TableRow key={rowIndex}>
+                  {columns.map((_, colIndex) => (
+                    <TableCell key={colIndex} className="px-6 py-4">
+                      <div className="h-5 w-3/4 bg-zinc-100 dark:bg-zinc-800/80 animate-pulse rounded" />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
             ) : paginatedData.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={columns.length} className="px-6 py-8 text-center text-zinc-500">
-                  No data available
+                <TableCell colSpan={columns.length} className="px-6 py-4 text-center text-zinc-500">
+                  {emptyState || "No data available"}
                 </TableCell>
               </TableRow>
             ) : (

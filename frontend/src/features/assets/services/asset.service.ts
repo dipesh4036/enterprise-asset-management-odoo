@@ -61,16 +61,47 @@ export interface HistoryItem {
   notes?: string | null;
 }
 
+export interface AssetAllocation {
+  id: string;
+  status: "ALLOCATED" | "RETURNED" | "OVERDUE";
+  allocatedAt: string;
+  expectedReturnAt: string;
+  returnedAt: string | null;
+  employee?: {
+    id: string;
+    name: string;
+    email: string;
+  } | null;
+  notes?: string | null;
+}
+
+export interface AssetMaintenance {
+  id: string;
+  issue: string;
+  priority: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
+  status: "PENDING" | "APPROVED" | "REJECTED" | "TECHNICIAN_ASSIGNED" | "IN_PROGRESS" | "RESOLVED";
+  createdAt: string;
+  notes?: string | null;
+  raisedBy?: {
+    id: string;
+    name: string;
+  } | null;
+  technician?: {
+    id: string;
+    name: string;
+  } | null;
+}
+
 export interface AllocationHistoryResponse {
   success: boolean;
   message: string;
-  data: any[]; // List of allocations
+  data: AssetAllocation[];
 }
 
 export interface MaintenanceHistoryResponse {
   success: boolean;
   message: string;
-  data: any[]; // List of maintenance requests
+  data: AssetMaintenance[];
 }
 
 export interface CreateAssetInput {

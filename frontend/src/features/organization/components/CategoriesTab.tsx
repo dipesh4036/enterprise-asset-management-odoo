@@ -10,10 +10,11 @@ import {
 } from "../hooks/useOrg";
 import { AssetCategory } from "../services/org.service";
 import DataTable, { Column } from "@/components/common/DataTable";
+import EmptyState from "@/components/common/EmptyState";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { PlusCircle, Edit2, Trash2, ShieldAlert, Plus } from "lucide-react";
+import { PlusCircle, Edit2, Trash2, ShieldAlert, Plus, Layers } from "lucide-react";
 
 interface CustomFieldItem {
   name: string;
@@ -173,6 +174,18 @@ export default function CategoriesTab() {
         searchPlaceholder="Search categories..."
         searchKey="name"
         isLoading={categoriesLoading}
+        emptyState={
+          <EmptyState
+            icon={<Layers className="h-8 w-8 text-zinc-400" />}
+            title="No Categories Configured"
+            description="Add asset categories (e.g. Laptops, Servers) and setup custom schemas to begin classification."
+            action={
+              <Button size="sm" onClick={openCreateModal} className="cursor-pointer">
+                Add Asset Category
+              </Button>
+            }
+          />
+        }
       />
 
       {/* Create/Edit Modal */}
