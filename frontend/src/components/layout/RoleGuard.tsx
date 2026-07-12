@@ -2,7 +2,7 @@
 
 import { useAuthStore, Role } from "@/store/auth.store";
 import { useRouter } from "next/navigation";
-import { useEffect, ReactNode } from "react";
+import { useEffect, ReactNode, useState } from "react";
 
 interface RoleGuardProps {
   children: ReactNode;
@@ -17,14 +17,25 @@ export default function RoleGuard({
 }: RoleGuardProps) {
   const { user, isAuthenticated } = useAuthStore();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-    } else if (allowedRoles && user && !allowedRoles.includes(user.role)) {
-      router.push(fallbackUrl);
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      if (!isAuthenticated) {
+        router.push("/login");
+      } else if (allowedRoles && user && !allowedRoles.includes(user.role)) {
+        router.push(fallbackUrl);
+      }
     }
-  }, [isAuthenticated, user, allowedRoles, router, fallbackUrl]);
+  }, [isAuthenticated, user, allowedRoles, router, fallbackUrl, mounted]);
+
+  if (!mounted) {
+    return null;
+  }
 
   if (!isAuthenticated) {
     return null;

@@ -67,7 +67,7 @@ export default function KPICard({
   const styles = getColorStyles(color);
 
   return (
-    <Card className={cn("border bg-white dark:bg-zinc-950/50 shadow-sm transition-all duration-200 hover:shadow-md", styles.border)}>
+    <Card className="border border-border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md rounded-lg">
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div className="space-y-1">
