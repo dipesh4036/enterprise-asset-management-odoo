@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useAuthStore } from "@/store/auth.store";
 import DepartmentsTab from "@/features/organization/components/DepartmentsTab";
+import CategoriesTab from "@/features/organization/components/CategoriesTab";
 import { Building2, Layers, Users, ShieldAlert } from "lucide-react";
 import { cn } from "@/utils/cn";
 
@@ -78,11 +79,7 @@ export default function OrganizationPage() {
       {/* Render active tab content */}
       <div className="pt-2">
         {activeTab === "departments" && <DepartmentsTab />}
-        {activeTab === "categories" && (
-          <div className="p-8 text-center text-sm text-zinc-500 dark:text-zinc-400 border border-dashed rounded-xl border-zinc-300 dark:border-zinc-800">
-            Categories Configuration tab is currently loading...
-          </div>
-        )}
+        {activeTab === "categories" && <CategoriesTab />}
         {activeTab === "employees" && (
           <div className="p-8 text-center text-sm text-zinc-500 dark:text-zinc-400 border border-dashed rounded-xl border-zinc-300 dark:border-zinc-800">
             Personnel Directory tab is currently loading...
