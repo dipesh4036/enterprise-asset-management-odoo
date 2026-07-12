@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -53,7 +53,7 @@ export default function RegisterAssetModal({ isOpen, onClose }: RegisterAssetMod
   const { data: categoriesResponse } = useCategories();
   const { data: deptsResponse } = useDepartments();
 
-  const categories = categoriesResponse?.data || [];
+  const categories = useMemo(() => categoriesResponse?.data || [], [categoriesResponse?.data]);
   const departments = deptsResponse?.data || [];
 
   // Success view state
